@@ -8,11 +8,6 @@ router = APIRouter(
     tags=["addition"]
 )
 
-class AdditionCreate(BaseModel):
-    num1_digits: int
-    num2_digits: int
-    questions: int
-
 @router.post(
     "/", 
     response_model=AdditionResponse,
