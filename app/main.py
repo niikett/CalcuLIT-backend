@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.schemas import *
-from app.api.routes import addition
+from app.api.routes import addition, subtraction
 
 # app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 app = FastAPI()
@@ -23,3 +23,4 @@ async def dummy_route():
 
 
 app.include_router(addition.router)
+app.include_router(subtraction.router)
