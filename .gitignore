@@ -1,2 +1,4 @@
-mental-math-trainer.html
+**/__pycache__/
+*.py[cod]
 venv/
+mental-math-trainer.html
