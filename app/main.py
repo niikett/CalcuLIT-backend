@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.schemas import *
-from app.api.routes import addition, subtraction, multiplication, division
+from app.api.routes import addition, subtraction, multiplication, division, exponents
 
 # app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
 app = FastAPI()
@@ -26,3 +26,4 @@ app.include_router(addition.router)
 app.include_router(subtraction.router)
 app.include_router(multiplication.router)
 app.include_router(division.router)
+app.include_router(exponents.router)
