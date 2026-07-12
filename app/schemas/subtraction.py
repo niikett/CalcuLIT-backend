@@ -1,6 +1,21 @@
-from pydantic import BaseModel
-from typing import List
+from uuid import UUID
+from pydantic import BaseModel, Field, field_validator
+from typing import List, Optional
+from datetime import datetime
 
+class SubtractionQuestionResponse(BaseModel):
+    question: str
+    answer: int
+    given_answer: Optional[int] = None
+    is_correct: Optional[bool] = None
+    time_taken: Optional[float] = None
+
+    @field_validator("time_taken")
+    @classmethod
+    def round_time(cls, value):
+        if value is None:
+            return value
+        return round(value, 2)
 
 class SubtractionCreate(BaseModel):
     num1_digits: int
@@ -8,11 +23,25 @@ class SubtractionCreate(BaseModel):
     questions: int
     negative_answers: bool = False
 
-class SubtractionQuestion(BaseModel):
-    question: str
-    answer: int
-
 class SubtractionResponse(BaseModel):
-    questions_list: List[SubtractionQuestion]
+    subtraction_practice_id: UUID
+    questions: List[SubtractionQuestionResponse]
+    total_time_taken: float
+
+    @field_validator("total_time_taken")
+    @classmethod
+    def round_time(cls, value):
+        if value is None:
+            return value
+        return round(value, 2)
+
+class SubtractionServerResponse(BaseModel):
+    subtraction_practice_id: UUID
+    questions: List[SubtractionQuestionResponse]
+    score: Optional[str] = None
+    total_time_taken: Optional[float] = None
+    created_at: Optional[datetime] = None
     status_code: int
-    
+
+    class Config:
+        from_attributes = True

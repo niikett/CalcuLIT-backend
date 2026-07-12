@@ -77,7 +77,7 @@ def addition_questions(
 
 
 @router.put(
-    "/practice-response",
+    "/",
     response_model=AdditionServerResponse,
     status_code=status.HTTP_201_CREATED
 )
