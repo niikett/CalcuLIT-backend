@@ -3,4 +3,3 @@ from app.schemas.subtraction import *
 from app.schemas.multiplication import *
 from app.schemas.division import *
 from app.schemas.exponent import *
-from app.schemas.percentage import *
